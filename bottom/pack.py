@@ -552,7 +552,7 @@ def pack_command(command, **kwargs):
     # CAP LIST
     # CAP REQ <capability1 [capability2] [-remove3] [=sticky4] [~always5]>
     elif command == "CAP":
-        return "CAP {} {}".format(f("subcommand", kwargs), pack("arg", kwargs, default='', sep=' '))
+        return "CAP {} {}".format(f("subcommand", kwargs), f("arg", kwargs, default=''))
 
     else:
         raise ValueError("Unknown command '{}'".format(command))
