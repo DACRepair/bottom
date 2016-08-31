@@ -163,7 +163,8 @@ for numeric, string in [
 ]:
     _2812_synonyms[string] = string
     _2812_synonyms[numeric] = string
-    
+
+_draft_synonyms = {}
 for numeric, string in [
   ("410", "ERR_INVALIDCAPCMD")  
 ]:
