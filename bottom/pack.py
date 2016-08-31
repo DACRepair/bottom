@@ -543,6 +543,16 @@ def pack_command(command, **kwargs):
     # ISON syrk
     elif command == "ISON":
         return "ISON " + pack("nick", kwargs, sep=" ")
+    
+    # CAP
+    # https://tools.ietf.org/html/draft-mitchell-irc-capabilities-01
+    # CAP <sub command> :[<arg(s)>]
+    # ----------
+    # CAP LS
+    # CAP LIST
+    # CAP REQ <capability1 [capability2] [-remove3] [=sticky4] [~always5]>
+    elif command == "CAP":
+        return "CAP {} {}".format(f("subcommand", kwargs), pack("arg", kwargs, default='', sep=' '))
 
     else:
         raise ValueError("Unknown command '{}'".format(command))
