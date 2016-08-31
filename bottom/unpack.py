@@ -163,11 +163,18 @@ for numeric, string in [
 ]:
     _2812_synonyms[string] = string
     _2812_synonyms[numeric] = string
+    
+for numeric, string in [
+  ("410", "ERR_INVALIDCAPCMD")  
+]:
+    _draft_synonyms[string] = string
+    _draft_synonyms[numeric] = string
 
 
 def synonym(command):
     command = command.upper()
-    return _2812_synonyms.get(command, command)
+    synonyms = {**_2812_synonyms, **_draft_synonyms}
+    return synonyms.get(command, command)
 
 
 def nickmask(prefix, kwargs):
