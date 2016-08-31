@@ -299,6 +299,9 @@ def unpack_command(msg):
         kwargs["info"] = params[1:-1]
         kwargs["message"] = params[-1]
 
+    elif command in ["ACK", "NAK"]:
+        kwargs['result] = params[0]
+
     else:
         raise ValueError("Unknown command '{}'".format(command))
 
@@ -381,7 +384,8 @@ def parameters(command):
         params.append("info")
         params.append("message")
 
-    elif command in []
+    elif command in ["ACK", "NAK"]:
+        params.append('result')
 
     else:
         raise ValueError("Unknown command '{}'".format(command))
