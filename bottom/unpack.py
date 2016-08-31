@@ -166,7 +166,9 @@ for numeric, string in [
 
 _draft_synonyms = {}
 for numeric, string in [
-  ("410", "ERR_INVALIDCAPCMD")  
+  ("410", "ERR_INVALIDCAPCMD"),
+  ("CAP", "ACK"),
+  ("CAP", "NAK")
 ]:
     _draft_synonyms[string] = string
     _draft_synonyms[numeric] = string
@@ -378,6 +380,8 @@ def parameters(command):
     elif command in ["RPL_MYINFO", "RPL_BOUNCE"]:
         params.append("info")
         params.append("message")
+
+    elif command in []
 
     else:
         raise ValueError("Unknown command '{}'".format(command))
