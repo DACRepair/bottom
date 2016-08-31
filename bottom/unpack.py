@@ -167,8 +167,7 @@ for numeric, string in [
 _draft_synonyms = {}
 for numeric, string in [
   ("410", "ERR_INVALIDCAPCMD"),
-  ("CAP", "ACK"),
-  ("CAP", "NAK")
+  ("CAP", "CAP ACK/NAK")
 ]:
     _draft_synonyms[string] = string
     _draft_synonyms[numeric] = string
@@ -299,8 +298,9 @@ def unpack_command(msg):
         kwargs["info"] = params[1:-1]
         kwargs["message"] = params[-1]
 
-    elif command in ["ACK", "NAK"]:
-        kwargs['result'] = str([prefix, command, params])
+    elif command in ["CAP ACK/NAK"]:
+        kwargs['result'] = params[1]
+        kwargs['capabilities'] = params[2]
 
     else:
         raise ValueError("Unknown command '{}'".format(command))
@@ -384,8 +384,9 @@ def parameters(command):
         params.append("info")
         params.append("message")
 
-    elif command in ["ACK", "NAK"]:
+    elif command in ["CAP ACK/NAK"]:
         params.append('result')
+        params.appent('capabilities')
 
     else:
         raise ValueError("Unknown command '{}'".format(command))
