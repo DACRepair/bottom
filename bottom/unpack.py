@@ -300,7 +300,7 @@ def unpack_command(msg):
         kwargs["message"] = params[-1]
 
     elif command in ["ACK", "NAK"]:
-        kwargs['result'] = str(params)
+        kwargs['result'] = str([prefix, command, params])
 
     else:
         raise ValueError("Unknown command '{}'".format(command))
